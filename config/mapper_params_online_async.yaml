@@ -15,14 +15,26 @@ slam_toolbox:
     base_frame: base_footprint
     scan_topic: /scan
     use_map_saver: true
-    mode: mapping #localization
+    
+    mode: localization #mapping
+    # SLAM 할 때는 mapping 
+    # 다 따진 맵을 불러와 현재 라이다 스캔 정보와 대조하여 로봇의 위치를 불러올 때는 localization
+    
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    #map_file_name: test_steve
+
+    map_file_name: /home/junha/slam_nav_mybot_ws/my_map_serial
+    # 다 따진 맵파일을 불러오는 코드이다.
+    # 확장자명까지는 안적어도 된다.
+
     # map_start_pose: [0.0, 0.0, 0.0]
-    #map_start_at_dock: true
+    map_start_at_dock: true
+
+    # 이때 map_start_pose 와 map_start_at_dock 둘 중 하나만 쓸 수 있다.
+    # dock 는 맵 serial 데이터에 저장된 특정 위치 (아마 얘도 /map 좌표 기준이겠지?) (배터리 충전소 같은 곳) 에서 로봇을 시작시키고 싶을때 활성화
+    # pose 는 맵의 원점인 /map 좌표 기준으로 특정 위치 (x,y) 방향 (yaw) 에서 로봇을 시작시키고 싶을때 활성화
 
     debug_logging: false
     throttle_scans: 1
