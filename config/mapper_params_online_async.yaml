@@ -52,8 +52,17 @@ slam_toolbox:
     # General Parameters
     use_scan_matching: true
     use_scan_barycenter: true
-    minimum_travel_distance: 0.5
-    minimum_travel_heading: 0.5
+
+    ###
+    minimum_travel_distance: 0.05 # (5cm)
+    # 위치 보정을 위한 업데이트를 실행하기 위해 로봇이 이동해야 하는 최소 거리
+
+    minimum_travel_heading: 0.087 # (약 5도)
+    # 위치 보정을 위한 업데이트를 실행하기 위해 로봇이 회전해야 하는 최소 각도
+
+    # 이 값들이 너무 크기 때문에, 로봇이 멈춰있는 동안 발생하는 자잘한 Odometry 노이즈(Drift)가 누적되어 
+    # 위치가 틀어질 때까지 slam_toolbox가 "로봇은 아직 충분히움직이지 않았으니, 위치를 적극적으로 보정할 필요가 없다"고 판단하게 됩니다.
+    
     scan_buffer_size: 10
     scan_buffer_maximum_scan_distance: 10.0
     link_match_minimum_response_fine: 0.1  
