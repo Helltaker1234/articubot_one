@@ -40,20 +40,25 @@ def generate_launch_description():
             package="twist_mux",
             executable="twist_mux",
             parameters=[twist_mux_params],
-            remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
+            remappings=[('/cmd_vel_out','/diffbot_base_controller/cmd_vel_unstamped')]
+            # (아직 어떤 이유인지 모름)
+            # odrive_ros2_control 패키지 쪽에 의해서 인지, articubot_one 패키지에 의해서 인지는 모르겠지만,
+            # 기존에 /diff_cont 토픽에서 /diffbot_base_controller 으로 변경됨.
+            # 
+            # 이 부분 구조 제대로 파악하기
         )
 
     
 
 
-    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
+    # robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
 
-    controller_params_file = os.path.join(get_package_share_directory(package_name),'config','my_controllers.yaml')
+    controller_params_file = os.path.join(get_package_share_directory(package_name),'config','diffbot_controllers.yaml')
 
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[{'robot_description': robot_description},
+        parameters=[#{'robot_description': robot_description},
                     controller_params_file]
     )
 
@@ -62,7 +67,9 @@ def generate_launch_description():
     diff_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["diff_cont"],
+        arguments=["diffbot_base_controller"],
+        # odrive ros2 control 패키지에 의해서 기존의 diff_cont 라는 컨트롤러 이름이
+        # diffbot_base_controller 라고 변경 됨
     )
 
     delayed_diff_drive_spawner = RegisterEventHandler(
@@ -75,7 +82,9 @@ def generate_launch_description():
     joint_broad_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_broad"],
+        arguments=["joint_state_broadcaster"],
+        # odrive ros2 control 패키지에 의해서 기존의 joint_broad 라는 컨트롤러 이름이
+        # joint_state_broadcaster 라고 변경 됨
     )
 
     delayed_joint_broad_spawner = RegisterEventHandler(

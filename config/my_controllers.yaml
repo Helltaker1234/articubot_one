@@ -3,13 +3,17 @@ controller_manager:
     update_rate: 30
     # use_sim_time: true
 
-    diff_cont:
+    diffbot_base_controller:
+      # odrive ros2 control 패키지에 의해서
+      # diff_cont 에서 diffbot_base_controller 로 이름이 변경 됨.
       type: diff_drive_controller/DiffDriveController
 
-    joint_broad:
+    joint_state_broadcaster:
+      # odrive ros2 control 패키지에 의해서
+      # joint_broad 에서 joint_state_broadcaster 로 이름이 변경 됨.
       type: joint_state_broadcaster/JointStateBroadcaster
 
-diff_cont:
+diffbot_base_controller:
   ros__parameters:
 
     publish_rate: 50.0
@@ -64,5 +68,6 @@ diff_cont:
 
 
 
-# joint_broad:
+# joint_state_broadcaster:
 #   ros__parameters:
+# 이 부분은 ros parameter 가 아무것도 정의가 되어있지 않아서, 주석 해제시 에러가 뜸 그래서 주석 처리함. 
