@@ -16,18 +16,20 @@ slam_toolbox:
     scan_topic: /scan
     use_map_saver: true
     
-    mode: localization #mapping
-    # SLAM 할 때는 mapping 
-    # 다 따진 맵을 불러와 현재 라이다 스캔 정보와 대조하여 로봇의 위치를 불러올 때는 localization
+    mode: mapping
+    # SLAM 할 때는 "mapping" 
+    # 다 따진 맵을 불러와 현재 라이다 스캔 정보와 대조하여 로봇의 위치를 불러올 때는 "localization"
     
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
 
-    map_file_name: /home/junha/slam_nav_mybot_ws/my_map_serial
+    # map_file_name: /home/junha/slam_nav_mybot_ws/my_map_serial
     # 다 따진 맵파일을 불러오는 코드이다.
     # 확장자명까지는 안적어도 된다.
+    # 
+    # NUC 경로에 맞게 수정 필
 
     # map_start_pose: [0.0, 0.0, 0.0]
     map_start_at_dock: true
@@ -54,10 +56,12 @@ slam_toolbox:
     use_scan_barycenter: true
 
     ###
-    minimum_travel_distance: 0.05 # (5cm)
+    minimum_travel_distance: 0.5
+    # 0.05 가 (5cm)
     # 위치 보정을 위한 업데이트를 실행하기 위해 로봇이 이동해야 하는 최소 거리
 
-    minimum_travel_heading: 0.087 # (약 5도)
+    minimum_travel_heading: 0.5
+    # 0.087 가 (약 5도)
     # 위치 보정을 위한 업데이트를 실행하기 위해 로봇이 회전해야 하는 최소 각도
 
     # 이 값들이 너무 크기 때문에, 로봇이 멈춰있는 동안 발생하는 자잘한 Odometry 노이즈(Drift)가 누적되어 
