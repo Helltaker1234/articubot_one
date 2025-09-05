@@ -1,0 +1,11 @@
+scan_to_scan_filter_chain:
+  ros__parameters:
+    filter1:
+      name: range_filter
+      type: laser_filters/LaserScanRangeFilter
+      params:
+        use_message_range_limits: false # LaserScan 메시지 자체의 min/max 대신 아래 임계값을 사용
+        lower_threshold: 0.4          # 이 값보다 가까운 측정치는 제거 (미터)
+        upper_threshold: 12.0          # 이 값보다 먼 측정치는 제거 (미터)
+        # lower_replacement_value: .inf # 제거된 값을 특정 값으로 대체할 수도 있음
+        # upper_replacement_value: .inf # 제거된 값을 특정 값으로 대체할 수도 있음

@@ -13,7 +13,7 @@ slam_toolbox:
     odom_frame: odom
     map_frame: map
     base_frame: base_footprint
-    scan_topic: /scan
+    scan_topic: /scan_filtered
     use_map_saver: true
     
     mode: mapping
@@ -56,11 +56,11 @@ slam_toolbox:
     use_scan_barycenter: true
 
     ###
-    minimum_travel_distance: 0.5
+    minimum_travel_distance: 0.4
     # 0.05 가 (5cm)
     # 위치 보정을 위한 업데이트를 실행하기 위해 로봇이 이동해야 하는 최소 거리
 
-    minimum_travel_heading: 0.5
+    minimum_travel_heading: 0.05
     # 0.087 가 (약 5도)
     # 위치 보정을 위한 업데이트를 실행하기 위해 로봇이 회전해야 하는 최소 각도
 
